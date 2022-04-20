@@ -107,7 +107,6 @@ export default function ProductListScreen() {
       );
       toast.success('product created successfully');
       dispatch({ type: 'CREATE_SUCCESS' });
-      //navigate(`/admin/product/${data.product._id}`);
       navigate(`/admin/product/${data.product._id}`);
     } catch (err) {
       toast.error(getError(error));
@@ -165,7 +164,6 @@ export default function ProductListScreen() {
                 <th>NAME</th>
                 <th>PRICE</th>
                 <th>CATEGORY</th>
-                <th>BRAND</th>
                 <th>ACTIONS</th>
               </tr>
             </thead>
@@ -176,7 +174,6 @@ export default function ProductListScreen() {
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
-                  <td>{product.brand}</td>
                   <td>
                     <Button
                       type="button"
