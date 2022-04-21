@@ -38,7 +38,7 @@ import './App.css';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { fullBox, cart, userInfo } = state;
+  const { cart, userInfo } = state;
 
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
@@ -63,35 +63,37 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <div
-        className={
-          sidebarIsOpen
-            ? fullBox
-              ? 'site-container active-cont d-flex flex-column full-box backgroundRoot'
-              : 'site-container active-cont d-flex flex-column'
-            : fullBox
-            ? 'site-container d-flex flex-column full-box backgroundRoot'
-            : 'site-container d-flex flex-column backgroundRoot'
-        }
-      >
+      <div className="backgroundRoot">
         <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Button
+                className="d-flex bg-gradient"
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
-                <i className="fas fa-bars"></i>
+                <h6 className="mt-2">Menu</h6>
+                <i className="fas fa-bars m-2"></i>
               </Button>
 
-              <LinkContainer to="/">
+              <LinkContainer className="mx-3" to="/">
                 <Navbar.Brand>NEWRESTRO</Navbar.Brand>
               </LinkContainer>
+              <LinkContainer className="mx-5" to="/">
+                <Navbar.Brand>
+                  <i class="fa-solid fa-phone phone m-3"></i>
+                  <i className="instagram fa-brands fa-instagram m-3"></i>
+                  <i className="youtube fa-brands fa-youtube m-3"></i>
+                  <i className="tiktok fa-brands fa-tiktok m-3"></i>
+                  <i className="facebook fa-brands fa-facebook m-3"></i>
+                </Navbar.Brand>
+              </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
-                <Nav className="me-auto  w-100  justify-content-end">
+              <Navbar.Collapse className="w-100" id="basic-navbar-nav">
+                <SearchBox className="" />
+
+                <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && (
@@ -146,17 +148,19 @@ function App() {
         <div
           className={
             sidebarIsOpen
-              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
+              ? 'active-nav side-navbar side-navbar1 d-flex justify-content-between flex-wrap flex-column'
               : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
           }
         >
-          <Nav className="flex-column text-white w-100 p-2">
-            <Nav.Item>
-              <strong>Categories</strong>
+          <Nav className="d-flex  text-white w-100 p-2">
+            <Nav.Item className="mt-2 text-black">
+              <strong>Menu Book: </strong>
             </Nav.Item>
+
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
+                  className="text-white h-100"
                   to={`/search?category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
@@ -266,8 +270,9 @@ function App() {
             </Routes>
           </Container>
         </main>
+
         <footer>
-          <div className="text-center">All rights reserved</div>
+          <div className="text-center m-5">All Rights Reserved</div>
         </footer>
       </div>
     </BrowserRouter>

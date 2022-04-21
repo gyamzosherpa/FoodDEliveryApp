@@ -43,7 +43,7 @@ export default function CartScreen() {
       </Helmet>
       <h1>Shopping Cart</h1>
       <Row>
-        <Col md={8}>
+        <Col md={7}>
           {cartItems.length === 0 ? (
             <MessageBox>
               Cart is empty. <Link to="/">Go Shopping</Link>
@@ -53,12 +53,14 @@ export default function CartScreen() {
               {cartItems.map((item) => (
                 <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
-                    <Col md={4}>
+                    <Col md={3}>
                       <img
                         src={item.image}
-                        alt={item.name}
+                        alt="..."
                         className="img-fluid rounded img-thumbnail"
-                      ></img>{' '}
+                      ></img>
+                      <br />
+
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
                     <Col md={3}>
@@ -70,8 +72,8 @@ export default function CartScreen() {
                         disabled={item.quantity === 1}
                       >
                         <i className="fas fa-minus-circle"></i>
-                      </Button>{' '}
-                      <span>{item.quantity}</span>{' '}
+                      </Button>
+                      <span>{item.quantity}</span>
                       <Button
                         variant="light"
                         onClick={() =>
@@ -82,7 +84,7 @@ export default function CartScreen() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>${item.price}</Col>
+                    <Col md={3}>Rs.{item.price}</Col>
                     <Col md={2}>
                       <Button
                         onClick={() => removeItemHandler(item)}
@@ -104,7 +106,7 @@ export default function CartScreen() {
                 <ListGroup.Item>
                   <h3>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items) : $
+                    items) : Rs.
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
                   </h3>
                 </ListGroup.Item>

@@ -57,6 +57,7 @@ export default function UserEditScreen() {
         setName(data.name);
         setEmail(data.email);
         setIsAdmin(data.isAdmin);
+
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         dispatch({
@@ -128,6 +129,15 @@ export default function UserEditScreen() {
             checked={isAdmin}
             onChange={(e) => setIsAdmin(e.target.checked)}
           />
+
+          {/* <Form.Check
+            className="mb-3"
+            type="checkbox"
+            id="isSystemAdmin"
+            label="SystemAdmin"
+            checked={isSystemAdmin}
+            onChange={(e) => setisSystemAdmin(e.target.checked)}
+          /> */}
 
           <div className="mb-3">
             <Button disabled={loadingUpdate} type="submit">

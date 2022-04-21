@@ -17,15 +17,15 @@ export default function ShippingAddressScreen() {
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
+  const [contactNumber, setcontactNumber] = useState(
+    shippingAddress.contactNumber || ''
   );
   useEffect(() => {
     if (!userInfo) {
       navigate('/signin?redirect=/shipping');
     }
   }, [userInfo, navigate]);
-  const [country, setCountry] = useState(shippingAddress.country || '');
+
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
@@ -34,8 +34,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
-        postalCode,
-        country,
+        contactNumber,
         location: shippingAddress.location,
       },
     });
@@ -45,8 +44,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
-        postalCode,
-        country,
+        contactNumber,
         location: shippingAddress.location,
       })
     );
@@ -66,6 +64,7 @@ export default function ShippingAddressScreen() {
       <CheckoutSteps step1 step2></CheckoutSteps>
       <div className="container small-container">
         <h1 className="my-3">Shipping Address</h1>
+
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="fullName">
             <Form.Label>Full Name</Form.Label>
@@ -75,6 +74,7 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
+
           <Form.Group className="mb-3" controlId="address">
             <Form.Label>Address</Form.Label>
             <Form.Control
@@ -83,6 +83,7 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
+
           <Form.Group className="mb-3" controlId="city">
             <Form.Label>City</Form.Label>
             <Form.Control
@@ -91,22 +92,16 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="postalCode">
-            <Form.Label>Postal Code</Form.Label>
+
+          <Form.Group className="mb-3" controlId="contactNumber">
+            <Form.Label>Contact Number</Form.Label>
             <Form.Control
-              value={postalCode}
-              onChange={(e) => setPostalCode(e.target.value)}
+              value={contactNumber}
+              onChange={(e) => setcontactNumber(e.target.value)}
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </Form.Group>
+
           <div className="mb-3">
             <Button
               id="chooseOnMap"

@@ -4,10 +4,12 @@ import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
-import { Helmet } from 'react-helmet-async';
+
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Carousel1 from './Carousel1';
+import { Container } from 'react-bootstrap';
+
 // import data from '../data';
 
 const reducer = (state, action) => {
@@ -45,11 +47,7 @@ function HomeScreen() {
     fetchData();
   }, []);
   return (
-    <div className="container">
-      <Helmet>
-        <title>NEWRESTRO</title>
-      </Helmet>
-
+    <Container>
       <Carousel1 />
 
       <h1 className="mt-3 text-black">Featured Products</h1>
@@ -68,7 +66,7 @@ function HomeScreen() {
           </Row>
         )}
       </div>
-    </div>
+    </Container>
   );
 }
 export default HomeScreen;

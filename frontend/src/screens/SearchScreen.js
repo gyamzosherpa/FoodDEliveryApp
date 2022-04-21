@@ -36,16 +36,24 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: 'Rs.100 to Rs.300',
+    value: '100-299',
   },
   {
-    name: '$51 to $200',
-    value: '51-200',
+    name: 'Rs.300 to Rs.600',
+    value: '300-599',
   },
   {
-    name: '$201 to $1000',
-    value: '201-1000',
+    name: 'Rs.600 to Rs.900',
+    value: '600-899',
+  },
+  {
+    name: 'Rs.900 to Rs.1200',
+    value: '900-1199',
+  },
+  {
+    name: 'Above Rs.1200',
+    value: '1200-3000',
   },
 ];
 
@@ -74,7 +82,7 @@ export const ratings = [
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const sp = new URLSearchParams(search); // /search?category=Shirts
+  const sp = new URLSearchParams(search);
   const category = sp.get('category') || 'all';
   const query = sp.get('query') || 'all';
   const price = sp.get('price') || 'all';
@@ -130,11 +138,11 @@ export default function SearchScreen() {
   return (
     <div>
       <Helmet>
-        <title>Search Products</title>
+        <title>Search Food</title>
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Menu</h3>
           <div>
             <ul>
               <li>
@@ -233,7 +241,7 @@ export default function SearchScreen() {
                   </div>
                 </Col>
                 <Col className="text-end">
-                  Sort by{' '}
+                  Sort by
                   <select
                     value={order}
                     onChange={(e) => {

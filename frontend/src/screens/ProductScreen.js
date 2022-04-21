@@ -73,11 +73,7 @@ function ProductScreen() {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
-    }
+
     ctxDispatch({
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
@@ -124,15 +120,15 @@ function ProductScreen() {
   ) : (
     <div className="container">
       <Row>
-        <Col md={6}>
+        <Col md={8}>
           <img
-            className="img-large h-100 w-100"
+            className="img-large w-100"
             src={selectedImage || product.image}
             alt={product.name}
           ></img>
         </Col>
 
-        <Col md={6}>
+        <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -146,10 +142,10 @@ function ProductScreen() {
                 numReviews={product.numReviews}
               ></Rating>
             </ListGroup.Item>
-            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+            <ListGroup.Item>Price : Rs.{product.price}</ListGroup.Item>
             <ListGroup.Item>
               <Row xs={1} md={2} className="g-2">
-                {[product.image, ...product.images].map((x) => (
+                {[...product.images].map((x) => (
                   <Col key={x}>
                     <Card>
                       <Button
@@ -174,7 +170,7 @@ function ProductScreen() {
               onClick={addToCartHandler}
               variant="primary"
             >
-              Add to Cart
+              Confirm Order
             </Button>
           </ListGroup>
         </Col>
