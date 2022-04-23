@@ -41,6 +41,7 @@ orderRouter.get(
   '/summary',
   isAuth,
   isAdmin,
+
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.aggregate([
       {
@@ -106,6 +107,7 @@ orderRouter.get(
 orderRouter.put(
   '/:id/deliver',
   isAuth,
+
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {

@@ -39,7 +39,8 @@ userRouter.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.isAdmin = Boolean(req.body.isAdmin);
+      user.email = req.body.isAdmin || user.isAdmin;
+
       const updatedUser = await user.save();
       res.send({ message: 'User Updated', user: updatedUser });
     } else {
@@ -52,6 +53,7 @@ userRouter.delete(
   '/:id',
   isAuth,
   isAdmin,
+
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
@@ -77,6 +79,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+
           token: generateToken(user),
         });
         return;
@@ -100,6 +103,7 @@ userRouter.post(
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+
       token: generateToken(user),
     });
   })

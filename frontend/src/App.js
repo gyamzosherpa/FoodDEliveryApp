@@ -35,6 +35,7 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
 import './App.css';
+import SubAdminRoute from './components/SubAdminRoute';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -103,7 +104,7 @@ function App() {
                     )}
                   </Link>
                   {userInfo ? (
-                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <NavDropdown title={userInfo.email} id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -124,7 +125,7 @@ function App() {
                       Sign In
                     </Link>
                   )}
-                  {userInfo && userInfo.isAdmin && (
+                  {userInfo && userInfo.isAdmin === 1 && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
@@ -137,6 +138,14 @@ function App() {
                       </LinkContainer>
                       <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
+                  )}
+
+                  {userInfo && userInfo.isAdmin === 2 && (
+                    <NavDropdown title="SubAdmin" id="admin-nav-dropdown">
+                      <LinkContainer to="/admin/orders">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
                   )}
@@ -217,6 +226,7 @@ function App() {
               ></Route>
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
               {/* Admin Routes */}
+
               <Route
                 path="/admin/dashboard"
                 element={
@@ -233,6 +243,16 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+
+              <Route
+                path="/admin/orders"
+                element={
+                  <SubAdminRoute>
+                    <OrderListScreen />
+                  </SubAdminRoute>
+                }
+              ></Route>
+
               <Route
                 path="/admin/users"
                 element={
