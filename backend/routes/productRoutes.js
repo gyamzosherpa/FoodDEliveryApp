@@ -21,7 +21,6 @@ productRouter.post(
       image: '/images/p1.jpg',
       price: 0,
       category: 'sample category',
-      // brand: 'sample brand',
       rating: 0,
       numReviews: 0,
       description: 'sample description',
@@ -105,7 +104,7 @@ productRouter.post(
   })
 );
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 4;
 
 productRouter.get(
   '/admin',

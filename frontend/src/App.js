@@ -104,7 +104,7 @@ function App() {
                     )}
                   </Link>
                   {userInfo ? (
-                    <NavDropdown title={userInfo.email} id="basic-nav-dropdown">
+                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -125,6 +125,7 @@ function App() {
                       Sign In
                     </Link>
                   )}
+
                   {userInfo && userInfo.isAdmin === 1 && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
@@ -181,6 +182,7 @@ function App() {
         </div>
         <main>
           <Container className="mt-3">
+            {/* ............routing..... */}
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
@@ -225,7 +227,8 @@ function App() {
                 element={<ShippingAddressScreen />}
               ></Route>
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-              {/* Admin Routes */}
+
+              {/* ...........Admin Routes............... */}
 
               <Route
                 path="/admin/dashboard"
@@ -241,15 +244,6 @@ function App() {
                   <AdminRoute>
                     <OrderListScreen />
                   </AdminRoute>
-                }
-              ></Route>
-
-              <Route
-                path="/admin/orders"
-                element={
-                  <SubAdminRoute>
-                    <OrderListScreen />
-                  </SubAdminRoute>
                 }
               ></Route>
 
@@ -285,6 +279,17 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+
+              {/*start sub admin route */}
+              <Route
+                path="/admin/orders"
+                element={
+                  <SubAdminRoute>
+                    <OrderListScreen />
+                  </SubAdminRoute>
+                }
+              ></Route>
+              {/*end sub admin route */}
 
               <Route path="/" element={<HomeScreen />} />
             </Routes>
