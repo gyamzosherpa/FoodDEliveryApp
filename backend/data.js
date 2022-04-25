@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
-  users: [{}],
+  users: [],
   products: [{}],
 };
 export default data;

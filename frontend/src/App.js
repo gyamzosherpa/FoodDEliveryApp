@@ -35,7 +35,6 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
 import './App.css';
-import SubAdminRoute from './components/SubAdminRoute';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -126,7 +125,7 @@ function App() {
                     </Link>
                   )}
 
-                  {userInfo && userInfo.isAdmin === 1 && (
+                  {userInfo && userInfo.isAdmin && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
@@ -139,14 +138,6 @@ function App() {
                       </LinkContainer>
                       <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
-                      </LinkContainer>
-                    </NavDropdown>
-                  )}
-
-                  {userInfo && userInfo.isAdmin === 2 && (
-                    <NavDropdown title="SubAdmin" id="admin-nav-dropdown">
-                      <LinkContainer to="/admin/orders">
-                        <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
                   )}
@@ -279,17 +270,6 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-
-              {/*start sub admin route */}
-              <Route
-                path="/admin/orders"
-                element={
-                  <SubAdminRoute>
-                    <OrderListScreen />
-                  </SubAdminRoute>
-                }
-              ></Route>
-              {/*end sub admin route */}
 
               <Route path="/" element={<HomeScreen />} />
             </Routes>
